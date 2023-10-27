@@ -18,3 +18,4 @@ use App\Http\Controllers\RiderLocationController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('create/rider_location',[RiderLocationController::class, 'getDistance']);
