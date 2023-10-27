@@ -34,11 +34,13 @@ class RiderLocationController extends Controller
         $rider_id = $request->rider_id;
         $restaurant_id = $request->restaurant_id;
 
-        $resturant = RestaturantLocationResource::collection(RestaurantLocation::where('restaurant_id', $restaurant_id)->get());
+        $resturant = RestaurantLocation::where('restaurant_id', $restaurant_id)->first();
+        
+        $rider_location =RiderLocation::where('rider_id', $rider_id)->first();
 
-        dd($resturant);
+        $distance = round((((acos(sin(($resturant->lat*pi()/180)) * sin(($rider_location->lat*pi()/180))+cos(($resturant->lat*pi()/180)) * cos(($rider_location->lat*pi()/180)) * cos((($resturant->long - $rider_location->long)*pi()/180))))*180/pi())*60*1.1515*1.609344), 2);
 
-        return RiderLocationResource::collection(RiderLocation::where('rider_id', $rider_id)->get());
+        return response()->json(['location_distance' => $distance]);
 
     }
 }

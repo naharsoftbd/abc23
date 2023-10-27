@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('create/rider_location',[RiderLocationController::class, 'setRiderLocation']);
-Route:post('/rider_location',[RiderLocationController::class, 'getRiderLocation'])->name('riderlocation');
+Route::post('/rider_location',[RiderLocationController::class, 'getRiderLocation'])->name('riderlocation');
